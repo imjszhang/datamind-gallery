@@ -1,6 +1,6 @@
 # DataMind 作品展示
 
-> 由 DataMind 强力驱动 | 最后更新: 2025-03-22
+> 由 DataMind 强力驱动 | 最后更新: 2025-03-23
 
 ![DataMind Banner](https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
 
@@ -8,19 +8,16 @@
 
 这个网站包含了通过 DataMind 生成的数据可视化和分析作品集。所有作品都由人工智能协助生成，展示了现代数据科学和可视化技术的强大功能。
 
-**网站地址**: [https://username.github.io/repo/](https://username.github.io/repo/)
+**网站地址**: [https://imjszhang.github.io/datamind-gallery/](https://imjszhang.github.io/datamind-gallery/)
 
 ## 作品集亮点
 
-当前共有 **5** 个作品，涵盖了多个数据分析和可视化领域。
+当前共有 **2** 个作品，涵盖了多个数据分析和可视化领域。
 
 ### 精选作品
 
-- [#20250316_194130 - 为我的GitHub开源项目创建一个30天推特营销策略，包括不同类型的推文（技术更新、用户故事、教程链...](https://username.github.io/repo/artifacts/20250316_194130_3.html)
-- [#20250316_194130 - 详细制定一个GitHub开源项目的Twitter推广策略，包括不同阶段的推文模板、最佳发布时间、互动...](https://username.github.io/repo/artifacts/20250316_194130_2.html)
-- [#20250316_194130 - 制定一个github开源项目在推特平台进行推广的内容发布计划，要用模拟推特内容卡片的样式来准备模拟内...](https://username.github.io/repo/artifacts/20250316_194130_1.html)
-- [#20250320_223828 - 分析OpenEvidence，给我一份详细的报告。](https://username.github.io/repo/artifacts/20250320_223828_3.html)
-- [#20250320_223828 - 分析OpenEvidence，给我一份详细的报告。](https://username.github.io/repo/artifacts/20250320_223828_1.html)
+- [#20250320_223828 - 分析OpenEvidence，给我一份详细的报告。](https://imjszhang.github.io/datamind-gallery/artifacts/20250320_223828_3.html)
+- [#20250320_223828 - 分析OpenEvidence，给我一份详细的报告。](https://imjszhang.github.io/datamind-gallery/artifacts/20250320_223828_1.html)
 
 
 ## 关于 DataMind
@@ -49,4 +46,4 @@ DataMind 是一个专注于数据分析和可视化的AI平台，它能够帮助
 
 ---
 
-&copy; 2025 DataMind | 由 [username](https://github.com/username) 部署 
+&copy; 2025 DataMind | 由 [imjszhang](https://github.com/imjszhang) 部署 

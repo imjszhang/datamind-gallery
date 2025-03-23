@@ -1,32 +1,5 @@
 [
   {
-    "alchemyId": "20250316_194130",
-    "alchemyDir": "alchemy_20250316_194130",
-    "query": "为我的GitHub开源项目创建一个30天推特营销策略，包括不同类型的推文（技术更新、用户故事、教程链接等），每条推文的模拟内容预览，最佳发布时间，以及如何利用推特特定功能（话题标签、投票、Spaces等）最大化社区参与度。",
-    "timestamp": "2025-03-16T19:59:59.048331",
-    "iteration": 3,
-    "screenshot": "images/20250316_194130_3.png",
-    "relativePath": "artifacts/20250316_194130_3.html"
-  },
-  {
-    "alchemyId": "20250316_194130",
-    "alchemyDir": "alchemy_20250316_194130",
-    "query": "详细制定一个GitHub开源项目的Twitter推广策略，包括不同阶段的推文模板、最佳发布时间、互动策略、相关标签研究，以及如何通过数据分析优化推广效果，并为每个阶段提供5个视觉吸引力强的推文卡片设计实例。",
-    "timestamp": "2025-03-16T19:53:38.552635",
-    "iteration": 2,
-    "screenshot": "images/20250316_194130_2.png",
-    "relativePath": "artifacts/20250316_194130_2.html"
-  },
-  {
-    "alchemyId": "20250316_194130",
-    "alchemyDir": "alchemy_20250316_194130",
-    "query": "制定一个github开源项目在推特平台进行推广的内容发布计划，要用模拟推特内容卡片的样式来准备模拟内容。",
-    "timestamp": "2025-03-16T19:47:01.894615",
-    "iteration": 1,
-    "screenshot": "images/20250316_194130_1.png",
-    "relativePath": "artifacts/20250316_194130_1.html"
-  },
-  {
     "alchemyId": "20250320_223828",
     "alchemyDir": "alchemy_20250320_223828",
     "query": "分析OpenEvidence，给我一份详细的报告。",
