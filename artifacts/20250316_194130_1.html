@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub开源项目推特推广计划</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .twitter-card {
+            transition: all 0.3s ease;
+        }
+        
+        .twitter-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-container {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .section-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+    <!-- Theme Toggle Button -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all">
+            <i class="fas fa-sun dark:hidden"></i>
+            <i class="fas fa-moon hidden dark:inline"></i>
+        </button>
+    </div>
+
+    <!-- Header Section -->
+    <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40 backdrop-blur bg-opacity-90 dark:bg-opacity-90">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
+            <h1 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4 md:mb-0">
+                GitHub开源项目推特推广计划
+            </h1>
+            <nav class="flex space-x-1 md:space-x-4 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto">
+                <a href="#overview" class="px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-all whitespace-nowrap">概述</a>
+                <a href="#content-strategy" class="px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-all whitespace-nowrap">内容策略</a>
+                <a href="#tweet-templates" class="px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-all whitespace-nowrap">推文模板</a>
+                <a href="#schedule" class="px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-all whitespace-nowrap">发布时间表</a>
+                <a href="#metrics" class="px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-all whitespace-nowrap">衡量指标</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Overview Section -->
+        <section id="overview" class="section-container mb-16">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 border border-gray-200 dark:border-gray-700">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
+                    <i class="fas fa-rocket mr-3 text-primary-500"></i>推广计划概述
+                </h2>
+                <div class="prose dark:prose-invert max-w-none">
+                    <p class="text-gray-600 dark:text-gray-300">
+                        本推广计划旨在通过Twitter平台提高GitHub开源项目的知名度、吸引贡献者和用户，并建立活跃的社区。我们将采用一系列有针对性的推文内容，包括项目亮点、技术分享、社区互动等多种形式，以吸引开发者关注并参与项目。
+                    </p>
+                    
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                            <h3 class="font-medium text-primary-600 dark:text-primary-400 mb-2">目标受众</h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 text-sm">
+                                <li>软件开发者</li>
+                                <li>开源贡献者</li>
+                                <li>技术社区领袖</li>
+                                <li>技术爱好者</li>
+                                <li>相关领域专业人士</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                            <h3 class="font-medium text-primary-600 dark:text-primary-400 mb-2">主要目标</h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 text-sm">
+                                <li>提高项目知名度</li>
+                                <li>增加GitHub星标数量</li>
+                                <li>吸引新的贡献者</li>
+                                <li>扩大用户基础</li>
+                                <li>建立活跃的社区讨论</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                            <h3 class="font-medium text-primary-600 dark:text-primary-400 mb-2">执行周期</h3>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 text-sm">
+                                <li>为期3个月的初始推广</li>
+                                <li>每周3-5条推文</li>
+                                <li>月度数据分析与调整</li>
+                                <li>重要里程碑特别宣传</li>
+                                <li>社区反馈持续优化</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Strategy Section -->
+        <section id="content-strategy" class="section-container mb-16">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 border border-gray-200 dark:border-gray-700">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
+                    <i class="fas fa-lightbulb mr-3 text-primary-500"></i>内容策略
+                </h2>
+                
+                <div class="prose dark:prose-invert max-w-none">
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        我们将创建多种类型的推文内容，以保持受众的兴趣并覆盖不同的宣传目标。每种内容类型都有特定的目的和目标受众。
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
+                            <h3 class="text-lg font-medium text-primary-600 dark:text-primary-400 mb-3">项目更新与里程碑</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                                分享项目的最新进展、版本发布、新功能和重要里程碑。
+                            </p>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded text-xs">频率: 每周1-2次</span>
+                                <span class="mx-2">|</span>
+                                <span class="flex items-center"><i class="fas fa-bullseye mr-1"></i> 提高项目关注度</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
+                            <h3 class="text-lg font-medium text-primary-600 dark:text-primary-400 mb-3">技术深度解析</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                                解释项目的技术细节、架构决策、代码示例和最佳实践。
+                            </p>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded text-xs">频率: 每周1次</span>
+                                <span class="mx-2">|</span>
+                                <span class="flex items-center"><i class="fas fa-brain mr-1"></i> 展示技术实力</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
+                            <h3 class="text-lg font-medium text-primary-600 dark:text-primary-400 mb-3">社区互动与问答</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                                回应社区问题、分享用户反馈、组织问答活动和调查。
+                            </p>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded text-xs">频率: 每周1次</span>
+                                <span class="mx-2">|</span>
+                                <span class="flex items-center"><i class="fas fa-users mr-1"></i> 促进社区参与</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
+                            <h3 class="text-lg font-medium text-primary-600 dark:text-primary-400 mb-3">使用案例与成功故事</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                                展示项目的实际应用场景、用户成功案例和解决方案。
+                            </p>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded text-xs">频率: 每两周1次</span>
+                                <span class="mx-2">|</span>
+                                <span class="flex items-center"><i class="fas fa-star mr-1"></i> 证明项目价值</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
+                            <h3 class="text-lg font-medium text-primary-600 dark:text-primary-400 mb-3">贡献者聚焦</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                                介绍项目贡献者、表彰社区成员、分享贡献者故事。
+                            </p>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <span class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-2 py-1 rounded text-xs">频率: 每月1次</span>
+                                <span class="mx-2">|</span>
+                                <span class="flex items-center"><i class="fas fa-heart mr-1"></i> 激励社区贡献</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
+                            <h3 class="text-lg font-medium text-primary-600 dark:text-primary-400 mb-3">教程与指南</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                                提供入门指南、教程、技巧和窍门，帮助新用户上手。
+                            </p>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <span class="bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-2 py-1 rounded text-xs">频率: 每两周1次</span>
+                                <span class="mx-2">|</span>
+                                <span class="flex items-center"><i class="fas fa-book mr-1"></i> 降低使用门槛</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tweet Templates Section -->
+        <section id="tweet-templates" class="section-container mb-16">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 border border-gray-200 dark:border-gray-700">
+                <h2 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
+                    <i class="fab fa-twitter mr-3 text-primary-500"></i>推文模板示例
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Tweet Card 1: Project Update -->
+                    <div class="twitter-card bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
+                        <div class="p-4">
+                            <div class="flex items-start mb-3">
+                                <div class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-3">
+                                    <i class="fab fa-github text-primary-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="flex items-center">
+                                        <span class="font-bold text-gray-900 dark:text-white">项目名称</span>
+                                        <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">@project_handle</span>
+                                        <span class="text-gray-400 dark:text-gray-500 text-sm ml-2">· 2h</span>
+                                    </div>
+                                    <div class="text-gray-800 dark:text-gray-200 mt-1">
+                                        🚀 激动宣布我们的 v2.0 版本发布了！此次更新带来了:
+                                        <br><br>
+                                        ✅ 性能提升50%
+                                        <br>
+                                        ✅ 全新的API接口
+                                        <br>
+                                        ✅ 改进的文档
+                                        <br><br>
+                                        立即体验: <span class="text-primary-500">github.com/project/repo</span>
+                                        <br><br>
+                                        #OpenSource #GitHub #技术
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 h-48 flex items-center justify-center">
+                                <div class="text-center p-4">
+                                    <i class="fas fa-code-branch text-4xl text-primary-500 mb-2"></i>
+                                    <p class="text-gray-600 dark:text-gray-300">项目版本更新图片</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between mt-3 text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-3">
+                                <div class="flex items-center">
+                                    <i class="far fa-comment mr-1"></i>
+                                    <span>24</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-retweet mr-1"></i>
+                                    <span>78</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-heart mr-1"></i>
+                                    <span>142</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-share-square"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-750 p-3 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700">
+                            <span class="font-medium">推文类型:</span> 项目更新与里程碑
+                        </div>
+                    </div>
+
+                    <!-- Tweet Card 2: Technical Deep Dive -->
+                    <div class="twitter-card bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
+                        <div class="p-4">
+                            <div class="flex items-start mb-3">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center mr-3">
+                                    <i class="fab fa-github text-blue-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="flex items-center">
+                                        <span class="font-bold text-gray-900 dark:text-white">项目名称</span>
+                                        <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">@project_handle</span>
+                                        <span class="text-gray-400 dark:text-gray-500 text-sm ml-2">· 1d</span>
+                                    </div>
+                                    <div class="text-gray-800 dark:text-gray-200 mt-1">
+                                        🔍 深入解析：我们如何将API响应时间减少65%
+                                        <br><br>
+                                        在最新版本中，我们重新设计了缓存层并优化了数据库查询。来看看背后的技术细节👇
+                                        <br><br>
+                                        完整技术博客: <span class="text-primary-500">project.dev/blog/performance</span>
+                                        <br><br>
+                                        #技术深度 #性能优化 #后端
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 p-4">
+                                <div class="bg-gray-200 dark:bg-gray-600 p-3 rounded font-mono text-sm text-gray-800 dark:text-gray-200 overflow-x-auto">
+                                    <pre>// 优化前的代码
+const results = await db.query(
+  "SELECT * FROM items WHERE user_id = ?", 
+  [userId]
+);
+
+// 优化后的代码
+const results = await cache.getOrSet(
+  `user_items:${userId}`,
+  async () => {
+    return db.query(
+      "SELECT id, name FROM items WHERE user_id = ?",
+      [userId]
+    );
+  },
+  60 * 15 // 15分钟缓存
+);</pre>
+                                </div>
+                            </div>
+                            <div class="flex justify-between mt-3 text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-3">
+                                <div class="flex items-center">
+                                    <i class="far fa-comment mr-1"></i>
+                                    <span>32</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-retweet mr-1"></i>
+                                    <span>105</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-heart mr-1"></i>
+                                    <span>189</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-share-square"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-750 p-3 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700">
+                            <span class="font-medium">推文类型:</span> 技术深度解析
+                        </div>
+                    </div>
+
+                    <!-- Tweet Card 3: Community Engagement -->
+                    <div class="twitter-card bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
+                        <div class="p-4">
+                            <div class="flex items-start mb-3">
+                                <div class="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center mr-3">
+                                    <i class="fab fa-github text-purple-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="flex items-center">
+                                        <span class="font-bold text-gray-900 dark:text-white">项目名称</span>
+                                        <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">@project_handle</span>
+                                        <span class="text-gray-400 dark:text-gray-500 text-sm ml-2">· 6h</span>
+                                    </div>
+                                    <div class="text-gray-800 dark:text-gray-200 mt-1">
+                                        💬 社区问答时间！
+                                        <br><br>
+                                        我们将在明天上午10点举行AMA (Ask Me Anything)，项目核心团队将在线回答你的所有问题！
+                                        <br><br>
+                                        提前在这条推文下方提问，或使用标签 #AskProjectTeam
+                                        <br><br>
+                                        期待与大家互动！🙌
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2 rounded-lg overflow-hidden bg-purple-50 dark:bg-purple-900/30 p-4 border border-purple-100 dark:border-purple-800">
+                                <div class="flex items-center">
+                                    <i class="fas fa-calendar-alt text-purple-500 text-2xl mr-3"></i>
+                                    <div>
+                                        <h4 class="font-medium text-gray-900 dark:text-white">社区AMA问答活动</h4>
+                                        <p class="text-gray-600 dark:text-gray-300 text-sm">明天 10:00 AM - 12:00 PM (UTC+8)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between mt-3 text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-3">
+                                <div class="flex items-center">
+                                    <i class="far fa-comment mr-1"></i>
+                                    <span>56</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-retweet mr-1"></i>
+                                    <span>42</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-heart mr-1"></i>
+                                    <span>97</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-share-square"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-750 p-3 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700">
+                            <span class="font-medium">推文类型:</span> 社区互动与问答
+                        </div>
+                    </div>
+
+                    <!-- Tweet Card 4: Use Case -->
+                    <div class="twitter-card bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
+                        <div class="p-4">
+                            <div class="flex items-start mb-3">
+                                <div class="w-12 h-12 rounded-full bg-yellow-100 dark:bg-yellow-900 flex items-center justify-center mr-3">
+                                    <i class="fab fa-github text-yellow-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="flex items-center">
+                                        <span class="font-bold text-gray-900 dark:text-white">项目名称</span>
+                                        <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">@project_handle</span>
+                                        <span class="text-gray-400 dark:text-gray-500 text-sm ml-2">· 2d</span>
+                                    </div>
+                                    <div class="text-gray-800 dark:text-gray-200 mt-1">
+                                        📊 案例分享：@TechCompany 如何使用我们的开源工具每月节省30小时开发时间
+                                        <br><br>
+                                        他们的团队利用我们的自动化工作流，将部署时间从45分钟减少到5分钟！
+                                        <br><br>
+                                        查看完整案例研究: <span class="text-primary-500">project.dev/case-studies</span>
+                                        <br><br>
+                                        #效率提升 #DevOps #自动化
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 h-48 flex items-center justify-center">
+                                <div class="text-center p-4">
+                                    <i class="fas fa-chart-line text-4xl text-yellow-500 mb-2"></i>
+                                    <p class="text-gray-600 dark:text-gray-300">案例研究数据图表</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between mt-3 text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-3">
+                                <div class="flex items-center">
+                                    <i class="far fa-comment mr-1"></i>
+                                    <span>18</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-retweet mr-1"></i>
+                                    <span>64</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-heart mr-1"></i>
+                                    <span>112</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-share-square"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-750 p-3 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700">
+                            <span class="font-medium">推文类型:</span> 使用案例与成功故事
+                        </div>
+                    </div>
+
+                    <!-- Tweet Card 5: Contributor Spotlight -->
+                    <div class="twitter-card bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
+                        <div class="p-4">
+                            <div class="flex items-start mb-3">
+                                <div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900 flex items-center justify-center mr-3">
+                                    <i class="fab fa-github text-red-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="flex items-center">
+                                        <span class="font-bold text-gray-900 dark:text-white">项目名称</span>
+                                        <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">@project_handle</span>
+                                        <span class="text-gray-400 dark:text-gray-500 text-sm ml-2">· 3d</span>
+                                    </div>
+                                    <div class="text-gray-800 dark:text-gray-200 mt-1">
+                                        ✨ 贡献者聚焦: @developer_name
+                                        <br><br>
+                                        感谢 Jane 在过去三个月中对我们项目的杰出贡献！她不仅修复了12个关键bug，还实现了全新的数据可视化功能。
+                                        <br><br>
+                                        了解更多关于Jane和她的工作: <span class="text-primary-500">project.dev/contributors/jane</span>
+                                        <br><br>
+                                        #OpenSourceHeroes #社区感谢
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2 grid grid-cols-2 gap-2">
+                                <div class="rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 h-32 flex items-center justify-center">
+                                    <div class="text-center p-4">
+                                        <i class="fas fa-user-circle text-4xl text-red-500"></i>
+                                    </div>
+                                </div>
+                                <div class="rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 h-32 flex items-center justify-center">
+                                    <div class="text-center p-4">
+                                        <i class="fas fa-code text-4xl text-red-500"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between mt-3 text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-3">
+                                <div class="flex items-center">
+                                    <i class="far fa-comment mr-1"></i>
+                                    <span>28</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-retweet mr-1"></i>
+                                    <span>37</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-heart mr-1"></i>
+                                    <span>154</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-share-square"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-750 p-3 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700">
+                            <span class="font-medium">推文类型:</span> 贡献者聚焦
+                        </div>
+                    </div>
+
+                    <!-- Tweet Card 6: Tutorial -->
+                    <div class="twitter-card bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
+                        <div class="p-4">
+                            <div class="flex items-start mb-3">
+                                <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center mr-3">
+                                    <i class="fab fa-github text-indigo-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="flex items-center">
+                                        <span class="font-bold text-gray-900 dark:text-white">项目名称</span>
+                                        <span class="text-gray-500 dark:text-gray-400 text-sm ml-2">@project_handle</span>
+                                        <span class="text-gray-400 dark:text-gray-500 text-sm ml-2">· 4d</span>
+                                    </div>
+                                    <div class="text-gray-800 dark:text-gray-200 mt-1">
+                                        📝 快速教程：5分钟内完成项目设置
+                                        <br><br>
+                                        我们创建了一个简单的入门指南，帮助新用户快速上手。即使你是初学者，也能轻松完成！
+                                        <br><br>
+                                        完整教程: <span class="text-primary-500">project.dev/quickstart</span>
+                                        <br><br>
+                                        #初学者友好 #教程 #快速上手
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 p-4">
+                                <div class="space-y-2">
+                                    <div class="flex items-center">
+                                        <div class="w-6 h-6 rounded-full bg-indigo-500 flex items-center justify-center text-white mr-2">1</div>
+                                        <span class="text-gray-700 dark:text-gray-300">安装依赖: <code class="bg-gray-200 dark:bg-gray-600 px-1 rounded">npm install</code></span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-6 h-6 rounded-full bg-indigo-500 flex items-center justify-center text-white mr-2">2</div>
+                                        <span class="text-gray-700 dark:text-gray-300">配置环境: <code class="bg-gray-200 dark:bg-gray-600 px-1 rounded">cp .env.example .env</code></span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-6 h-6 rounded-full bg-indigo-500 flex items-center justify-center text-white mr-2">3</div>
+                                        <span class="text-gray-700 dark:text-gray-300">运行项目: <code class="bg-gray-200 dark:bg-gray-600 px-1 rounded">npm start</code></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between mt-3 text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-3">
+                                <div class="flex items-center">
+                                    <i class="far fa-comment mr-1"></i>
+                                    <span>42</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-retweet mr-1"></i>
+                                    <span>86</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-heart mr-1"></i>
+                                    <span>203</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="far fa-share-square"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-750 p-3 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700">
+                            <span class="font-medium">推文类型:</span> 教程与指南
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section id="schedule" class="section-container mb-16">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 border border-gray-200 dark:border-gray-700">
+                <h2 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
+                    <i class="fas fa-calendar-alt mr-3 text-primary-500"></i>发布时间表
+                </h2>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                        <thead class="bg-gray-50 dark:bg-gray-700">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">星期</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">最佳发布时间</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">内容类型</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">备注</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">星期一</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">09:00 - 10:00</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
+                                        项目更新与里程碑
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">周一早晨是分享周末开发成果的好时机</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">星期二</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">12:00 - 13:00</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                                        技术深度解析
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">午餐时间是开发者阅读技术文章的高峰期</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">星期三</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">15:00 - 16:00</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200">
+                                        教程与指南
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">周三下午是学习新技能的好时机</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">星期四</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">19:00 - 20:00</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200">
+                                        社区互动与问答
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">晚间时段社区参与度最高</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">星期五</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">11:00 - 12:00</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200">
+                                        使用案例与成功故事
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">周五分享成功案例，激励周末贡献</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">星期六</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">14:00 - 15:00</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200">
+                                        贡献者聚焦
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">周末是表彰贡献者的理想时间</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">星期日</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">20:00 - 21:00</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
+                                        周报与预告
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">总结一周进展，预告下周计划</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-6 bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg border border-blue-100 dark:border-blue-800">
+                    <h3 class="font-medium text-blue-800 dark:text-blue-300 mb-2 flex items-center">
+                        <i class="fas fa-lightbulb mr-2"></i>发布时间建议
+                    </h3>
+                    <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                        <li>根据目标受众的地理位置调整发布时间</li>
+                        <li>使用Twitter Analytics追踪最佳互动时间，并据此调整</li>
+                        <li>重要更新应在工作日发布，以获得最大曝光</li>
+                        <li>考虑使用Twitter的定时发布功能确保一致性</li>
+                        <li>特殊活动或重大发布可能需要多条推文组合推广</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metrics Section -->
+        <section id="metrics" class="section-container mb-16">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 border border-gray-200 dark:border-gray-700">
+                <h2 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
+                    <i class="fas fa-chart-bar mr-3 text-primary-500"></i>衡量指标与成功标准
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-3">
+                                <i class="fas fa-bullhorn text-primary-500"></i>
+                            </div>
+                            <h3 class="text-lg font-medium text-gray-800 dark:text-gray-200">曝光度指标</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>推文展示次数</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>关注者增长率</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>提及次数</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>话题标签覆盖率</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-3">
+                                <i class="fas fa-hand-pointer text-primary-500"></i>
+                            </div>
+                            <h3 class="text-lg font-medium text-gray-800 dark:text-gray-200">互动指标</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>点赞数与转发数</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>评论数与质量</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>互动率(互动/展示)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>链接点击率</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-3">
+                                <i class="fas fa-code-branch text-primary-500"></i>
+                            </div>
+                            <h3 class="text-lg font-medium text-gray-800 dark:text-gray-200">GitHub指标</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>星标数增长</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Fork数增长</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>新贡献者数量</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>议题与PR活跃度</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                        <h3 class="text-lg font-medium text-gray-800 dark:text-gray-200">成功标准与目标</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200 mb-2">第一个月目标</h4>
+                                <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
+                                    <div class="space-y-3">
+                                        <div>
+                                            <div class="flex justify-between mb-1">
+                                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Twitter关注者增长</span>
+                                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">+100</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                                <div class="bg-primary-500 h-2 rounded-full" style="width: 25%"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between mb-1">
+                                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">平均推文互动率</span>
+                                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">2%</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                                <div class="bg-primary-500 h-2 rounded-full" style="width: 40%"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between mb-1">
+                                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">GitHub星标增长</span>
+                                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">+50</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                                <div class="bg-primary-500 h-2 rounded-full" style="width: 30%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200 mb-2">三个月目标</h4>
+                                <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
+                                    <div class="space-y-3">
+                                        <div>
+                                            <div class="flex justify-between mb-1">
+                                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Twitter关注者增长</span>
+                                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">+500</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                                <div class="bg-primary-500 h-2 rounded-full" style="width: 60%"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between mb-1">
+                                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">平均推文互动率</span>
+                                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">3.5%</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                                <div class="bg-primary-500 h-2 rounded-full" style="width: 70%"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between mb-1">
+                                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">GitHub星标增长</span>
+                                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">+300</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                                <div class="bg-primary-500 h-2 rounded-full" style="width: 80%"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between mb-1">
+                                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">新贡献者数量</span>
+                                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">+15</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                                                <div class="bg-primary-500 h-2 rounded-full" style="width: 50%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 bg-yellow-50 dark:bg-yellow-900/30 p-4 rounded-lg border border-yellow-100 dark:border-yellow-800">
+                    <h3 class="font-medium text-yellow-800 dark:text-yellow-300 mb-2 flex items-center">
+                        <i class="fas fa-exclamation-circle mr-2"></i>重要提示
+                    </h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                        定期审查指标表现，每月进行一次全面评估，并根据数据调整推广策略。特别关注哪些内容类型获得最高互动率，以及哪些发布时间效果最佳，从而优化未来的内容计划。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">GitHub开源项目推特推广计划</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
+                        为开源项目创建有效的社交媒体推广策略
+                    </p>
+                </div>
+                <div class="flex flex-col items-end">
+                    <div class="flex space-x-4 mb-2">
+                        <a href="https://twitter.com/author_handle" class="text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="https://github.com/author_handle" class="text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/author_handle" class="text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">
+                        © <span id="current-year"></span> 作者：开源推广专家
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="fixed bottom-4 right-4 bg-primary-500 text-white rounded-full p-3 shadow-lg opacity-0 invisible transition-all z-50 hover:bg-primary-600">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        // Check for system preference or saved preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.theme = 'dark';
+            } else {
+                localStorage.theme = 'light';
+            }
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Intersection Observer for fade-in animations
+        const sections = document.querySelectorAll('.section-container');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
