@@ -12,12 +12,14 @@
 
 ## 作品集亮点
 
-当前共有 **2** 个作品，涵盖了多个数据分析和可视化领域。
+当前共有 **4** 个作品，涵盖了多个数据分析和可视化领域。
 
 ### 精选作品
 
 - [#20250320_223828 - 分析OpenEvidence，给我一份详细的报告。](https://imjszhang.github.io/datamind-gallery/artifacts/20250320_223828_3.html)
 - [#20250320_223828 - 分析OpenEvidence，给我一份详细的报告。](https://imjszhang.github.io/datamind-gallery/artifacts/20250320_223828_1.html)
+- [#20250316_194130 - 为我的GitHub开源项目创建一个30天推特营销策略，包括不同类型的推文（技术更新、用户故事、教程链...](https://imjszhang.github.io/datamind-gallery/artifacts/20250316_194130_3.html)
+- [#20250316_194130 - 详细制定一个GitHub开源项目的Twitter推广策略，包括不同阶段的推文模板、最佳发布时间、互动...](https://imjszhang.github.io/datamind-gallery/artifacts/20250316_194130_2.html)
 
 
 ## 关于 DataMind
